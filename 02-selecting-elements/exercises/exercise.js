@@ -6,96 +6,98 @@
 // ===== Part 1: getElementById =====
 
 // 1. Select the element with id "page-title" and store it in a variable
-// Your code here:
-
+const pageTitle = document.getElementById("page-title");
+console.log(pageTitle);
 
 // 2. Select the element with id "main-header" and store it in a variable
-// Your code here:
-
+const mainHeader = document.getElementById("main-header");
+console.log(mainHeader);
 
 // 3. Select the contact form by its id
-// Your code here:
-
+const form = document.getElementById("contact-form");
+console.log(form);
 
 // 4. Select the submit button by its id
-// Your code here:
-
+const submitButton = document.getElementById("submit-btn");
+console.log(submitButton);
 
 
 // ===== Part 2: querySelector =====
 
 // 5. Select the first paragraph with class "intro-text"
-// Your code here:
-
+const paragraph = document.querySelector(".intro-text");
+console.log(paragraph);
 
 // 6. Select the navigation element using its class
-// Your code here:
-
+const navigation = document.querySelector(".navigation");
+console.log(navigation);
 
 // 7. Select the h3 element that also has class "special"
-// Your code here:
-
+const header3 = document.querySelector("h3.special");
+console.log(header3);
 
 // 8. Select the first card using its data attribute
 // Hint: use [data-id="1"]
-// Your code here:
-
+const firstCard = document.querySelector("[data-id='1']");
+console.log(firstCard);
 
 // 9. Select the email input using an attribute selector
-// Your code here:
-
+const email = document.querySelector("input[type='email']");
+console.log(email);
 
 
 // ===== Part 3: querySelectorAll =====
 
 // 10. Select ALL nav links and store them in a variable
-// Your code here:
-
+const navLinks = document.querySelectorAll(".nav-link");
+console.log(navLinks);
 
 // 11. Select ALL cards on the page
-// Your code here:
-
+const cards = document.querySelectorAll(".card");
+console.log(cards);
 
 // 12. Select ALL paragraphs with class "intro-text"
-// Your code here:
-
+const paragraphs = document.querySelectorAll(".intro-text");
+console.log(paragraphs);
 
 // 13. Select ALL input elements in the form
-// Your code here:
-
+const inputs = document.querySelectorAll("#contact-form input");
+console.log(inputs);
 
 // 14. Select ALL h2 AND h3 elements on the page
-// Your code here:
-
+const headings = document.querySelectorAll("h2, h3");
+console.log(headings);
 
 
 // ===== Part 4: Caching and Using Selections =====
 
 // 15. Cache the page title element, then log its text content
-// Your code here:
-
+const cachedTitle = document.getElementById('page-title');
+console.log(cachedTitle.textContent);
 
 // 16. Cache all card titles, then log how many there are
-// Your code here:
-
+const cardTitles = document.querySelectorAll(".card-title")
+console.log(cardTitles.length);
 
 // 17. Select the footer and log its innerHTML
-// Your code here:
-
+const footer = document.getElementById("main-footer");
+console.log(footer.innerText);
 
 
 // ===== BONUS Challenges =====
 
 // 18. Select the second nav-link (not the first, not all - just the second)
 // Hint: Look up :nth-child() or :nth-of-type()
-// Your code here:
-
+const secondNavLink = document.querySelector(".nav-link:nth-child(2)");
+console.log(secondNavLink);
 
 // 19. Select all cards that come after the first one
 // Hint: Look up :not(:first-child)
-// Your code here:
-
+const allCards = document.querySelector(".card:not(:first-child)");
+console.log(allCards);
 
 // 20. Convert a NodeList to an array and log it
-// Your code here:
+const items = [...document.querySelectorAll(".card")];
+console.log(items);
 
+//Array.from(document.querySelectorAll('.card'));
