@@ -5,14 +5,31 @@
 
 // 1. Create a DocumentFragment and add 10 list items (1-10) to #numbers-list
 // Use a for loop and add all items at once using the fragment
-// Your code here:
+const list = document.getElementById('numbers-list');
+const fragment = document.createDocumentFragment();
+
+for (let i = 1; i <=10; i++) {
+    const li = document.createElement('li');
+    li.textContent = `Item ${i}`;
+    fragment.appendChild(li);
+}
+
+list.appendChild(fragment);
 
 
 // 2. Create a function that takes an array of strings and adds them
 // to a list element using a DocumentFragment
-// function addItemsToList(items, listId) { ... }
-// Your code here:
-
+function addItemsToList(items, listId) {
+    const fragment = document.createDocumentFragment();
+    items.forEach(item=>{
+        const li = document.createElement('li');
+        li.textContent = item;
+        fragment.appendChild(li);
+    });
+    document.getElementById(listId).appendChild(fragment);
+}
+//Test
+addItemsToList(['Apple', 'Banana', 'Cherry'], 'numbers-list');
 
 
 // ===== Part 2: Using cloneNode =====
@@ -20,14 +37,22 @@
 // 3. Get the #simple-card-template (hidden in the HTML)
 // Clone it and create 3 cards with different titles and descriptions
 // Add them to #cards-container
-// Your code here:
+function createCard(title, description){
+    const template = document.getElementById('simple-card-template');
+    const clone = template.cloneNode(true);
 
+    clone.querySelector('h3').textContent = title;
+    clone.querySelector('p').textContent = description;
+    return clone;
+}
+const cardsContainer = document.getElementById('cards-container');
+cardsContainer.appendChild(createCard("Step 1", "Wake up at 6 am"));
+cardsContainer.appendChild(createCard("Step 2", "Get redy for work"));
+cardsContainer.appendChild(createCard("Step 3", "Drive to work"));
 
 // 4. Create a function that takes title and description,
 // clones the template, fills in the data, and returns the element
-// function createCardFromClone(title, description) { ... }
-// Your code here:
-
+//Same as 3
 
 
 // ===== Part 3: HTML Template Element =====
@@ -57,13 +82,46 @@ const products = [
 // 5. Use the #product-template to create product cards
 // Loop through the products array and add each to #products-container
 // Use a DocumentFragment for efficiency
-// Your code here:
+function addProductToList(products, listId, templateId) {
+    const template = document.getElementById(templateId);
+    const container = document.getElementById(listId);    
+    
+    products.forEach(product=>{
+        const clone = template.content.cloneNode(true);
 
+        clone.querySelector('.product-image').src = product.image;
+        clone.querySelector('.product-name').textContent = product.name;
+        clone.querySelector('.product-description').textContent = product.description;
+        clone.querySelector('.price').textContent = `$ ${product.price}`;
+
+        container.appendChild(clone);
+    });
+}
+addProductToList(products, "products-container", "product-template");
 
 // 6. Add event listeners to the "Add to Cart" buttons
 // When clicked, log the product name to the console
 // Hint: You can add the listener when creating each card
 // Your code here (modify your code from #5):
+function addProductToList(products, listId, templateId) {
+    const template = document.getElementById(templateId);
+    const container = document.getElementById(listId);    
+    
+    products.forEach(product=>{
+        const clone = template.content.cloneNode(true);
+
+        clone.querySelector('.product-image').src = product.image;
+        clone.querySelector('.product-name').textContent = product.name;
+        clone.querySelector('.product-description').textContent = product.description;
+        clone.querySelector('.price').textContent = `$ ${product.price}`;
+        const button = clone.querySelector('.add-to-cart');
+        button.addEventListener('click', () => {
+            console.log(product.name);
+        });
+        container.appendChild(clone);
+    });
+}
+addProductToList(products, "products-container", "product-template");
 
 
 
@@ -78,8 +136,23 @@ const users = [
 ];
 
 // 7. Use the #user-template to display the users
-// Your code here:
+const userTemplate = document.getElementById('user-template');
+const usersContainer = document.getElementById('users-container');   
+const userFragment = document.createDocumentFragment();
 
+users.forEach(user=>{
+    const clone = userTemplate.content.cloneNode(true);
+
+    clone.querySelector('.avatar').src = user.avatar;
+    clone.querySelector('.avatar').alt = user.name;
+    clone.querySelector('.name').textContent = user.name;
+    clone.querySelector('.email').textContent = user.email;
+    userFragment.appendChild(clone);
+    
+});
+
+usersContainer.appendChild(userFragment);
+console.log(usersContainer);
 
 
 // ===== Part 5: Chat Messages =====
@@ -95,7 +168,21 @@ const messages = [
 
 // 8. Use the #message-template to display the chat messages
 // Add the class "sent" or "received" based on the sent property
-// Your code here:
+const chatTemplate = document.getElementById('message-template');
+const chatContainer = document.getElementById('chat-container');   
+const chatFragment = document.createDocumentFragment();
+
+messages.forEach(m=>{
+    const clone = chatTemplate.content.cloneNode(true);
+
+    clone.querySelector('.text').textContent = m.text;
+    clone.querySelector('.time').textContent = m.time;
+    clone.querySelector('.message').classList.add(m.sent ? "sent" : "received");
+    chatFragment.appendChild(clone);
+    
+});
+
+chatContainer.appendChild(chatFragment);
 
 
 
@@ -106,7 +193,39 @@ const messages = [
 // Clicking "Test Fast" should add 1000 items using a fragment
 // Display the time taken in #performance-result
 // Your code here:
+const resultContainer = document.getElementById('performance-result');
+const listContainer = document.getElementById('performance-list');
 
+function createItem(i) {
+  const li = document.createElement('li');
+  li.textContent = `Item ${i}`;
+  return li;
+}
+
+// --- Test Slow: Direct Append ---
+document.getElementById('test-slow').addEventListener('click', () => {
+    listContainer.innerHTML = ''; 
+    const start = performance.now();
+    for (let i = 0; i < 1000; i++) {
+        listContainer.appendChild(createItem(i));        
+    }
+    const end =performance.now();
+    resultContainer.textContent = `Direct Append took ${(end - start).toFixed(2)} ms`;
+});
+
+// --- Test Fast: Using DocumentFragment ---
+document.getElementById('test-fast').addEventListener('click', () => {
+    listContainer.innerHTML = ''; 
+    const start = performance.now();
+    const fragment = document.createDocumentFragment();
+    for (let i = 0; i < 1000; i++) {
+        fragment.appendChild(createItem(i));
+    }
+    listContainer.appendChild(fragment); 
+
+    const end = performance.now(); 
+    resultContainer.textContent = `DocumentFragment took ${(end - start).toFixed(2)} ms`;
+});
 
 
 // ===== BONUS Challenges =====
