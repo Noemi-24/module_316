@@ -121,13 +121,13 @@
         <form id="form1">
             <!-- TODO: Add required attribute to these fields -->
             <label>First Name <span class="required-star">*</span></label>
-            <input type="text" name="firstName" id="firstName1">
+            <input type="text" name="firstName" id="firstName1" required>
             
             <label>Last Name <span class="required-star">*</span></label>
-            <input type="text" name="lastName" id="lastName1">
+            <input type="text" name="lastName" id="lastName1" required>
             
             <label>Email <span class="required-star">*</span></label>
-            <input type="text" name="email" id="email1">
+            <input type="text" name="email" id="email1" required>
             
             <button type="submit">Submit</button>
         </form>
@@ -140,19 +140,19 @@
         <form id="form2">
             <!-- TODO: Change type="text" to appropriate types -->
             <label>Email</label>
-            <input type="text" name="email" id="email2">
+            <input type="email" name="email" id="email2">
             
             <label>Website</label>
-            <input type="text" name="website" id="website2">
+            <input type="url" name="website" id="website2">
             
             <label>Age</label>
-            <input type="text" name="age" id="age2">
+            <input type="number" name="age" id="age2">
             
             <label>Birthday</label>
-            <input type="text" name="birthday" id="birthday2">
+            <input type="date" name="birthday" id="birthday2">
             
             <label>Favorite Color</label>
-            <input type="text" name="color" id="color2">
+            <input type="color" name="color" id="color2">
             
             <button type="submit">Submit</button>
         </form>
@@ -165,17 +165,17 @@
         <form id="form3">
             <!-- TODO: Add pattern for phone (123-456-7890) -->
             <label>Phone Number</label>
-            <input type="tel" name="phone" id="phone3">
+            <input type="tel" name="phone" id="phone3" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Format: 123-456-7890">
             <span class="hint">Format: 123-456-7890</span>
             
             <!-- TODO: Add pattern for zip code (5 digits) -->
             <label>Zip Code</label>
-            <input type="text" name="zip" id="zip3">
+            <input type="text" name="zip" id="zip3"  pattern="[0-9]{5}" title="5-digit zip code">
             <span class="hint">5-digit zip code</span>
             
             <!-- TODO: Add pattern for username (alphanumeric, 4-12 chars) -->
             <label>Username</label>
-            <input type="text" name="username" id="username3">
+            <input type="text" name="username" id="username3" pattern="[A-Za-z0-9]{4,12}" title="4-12 alphanumeric characters">
             <span class="hint">4-12 alphanumeric characters</span>
             
             <button type="submit">Submit</button>
@@ -189,15 +189,15 @@
         <form id="form4">
             <!-- TODO: Username: 3-20 characters, required -->
             <label>Username (3-20 characters) <span class="required-star">*</span></label>
-            <input type="text" name="username" id="username4">
+            <input type="text" name="username" id="username4" minlength="3" maxlength="20" required>
             
             <!-- TODO: Bio: max 150 characters -->
             <label>Short Bio (max 150 characters)</label>
-            <textarea name="bio" id="bio4" rows="3"></textarea>
+            <textarea name="bio" id="bio4" rows="3" maxlength="150"></textarea>
             
             <!-- TODO: Tweet: max 280 characters -->
             <label>Tweet (max 280 characters)</label>
-            <textarea name="tweet" id="tweet4" rows="2"></textarea>
+            <textarea name="tweet" id="tweet4" rows="2" maxlength="280"></textarea>
             
             <button type="submit">Submit</button>
         </form>
@@ -210,19 +210,19 @@
         <form id="form5">
             <!-- TODO: Age: 18-100 -->
             <label>Age (18-100)</label>
-            <input type="number" name="age" id="age5">
+            <input type="number" name="age" id="age5" min="18" max="100">
             
             <!-- TODO: Quantity: 1-10, whole numbers only -->
             <label>Quantity (1-10)</label>
-            <input type="number" name="quantity" id="quantity5">
+            <input type="number" name="quantity" id="quantity5" min="1" max="10" step="1">
             
             <!-- TODO: Price: $0.01 minimum, cents allowed -->
             <label>Price ($0.01 minimum)</label>
-            <input type="number" name="price" id="price5">
+            <input type="number" name="price" id="price5" min="0.01" step="0.01">
             
             <!-- TODO: Rating: 1-5, half stars allowed (0.5 step) -->
             <label>Rating (1-5, half stars allowed)</label>
-            <input type="number" name="rating" id="rating5">
+            <input type="number" name="rating" id="rating5" min="1" max="5" step="0.5">
             
             <button type="submit">Submit</button>
         </form>
@@ -235,15 +235,15 @@
         <form id="form6">
             <!-- TODO: Only allow future dates (set min to today) -->
             <label>Appointment Date (future only)</label>
-            <input type="date" name="appointment" id="appointment6">
+            <input type="date" name="appointment" id="appointment6"  min="(today's date)">
             
             <!-- TODO: Only allow past dates (set max to today) -->
             <label>Birth Date (past only)</label>
-            <input type="date" name="birthdate" id="birthdate6">
+            <input type="date" name="birthdate" id="birthdate6" max="(today's date)">
             
             <!-- TODO: Business hours only: 9:00 AM - 5:00 PM -->
             <label>Meeting Time (9am-5pm)</label>
-            <input type="time" name="meeting" id="meeting6">
+            <input type="time" name="meeting" id="meeting6" min="09:00" max="17:00">
             
             <button type="submit">Submit</button>
         </form>
@@ -256,8 +256,8 @@
         <form id="form7">
             <!-- TODO: Make this select required -->
             <label>Country <span class="required-star">*</span></label>
-            <select name="country" id="country7">
-                <option>Select a country</option>
+            <select name="country" id="country7" required>
+                <option value="">Select a country</option>
                 <option value="us">United States</option>
                 <option value="ca">Canada</option>
                 <option value="uk">United Kingdom</option>
@@ -266,8 +266,8 @@
             
             <!-- TODO: Make this select required -->
             <label>T-Shirt Size <span class="required-star">*</span></label>
-            <select name="size" id="size7">
-                <option>Choose size</option>
+            <select name="size" id="size7" required>
+                <option value="">Choose size</option>
                 <option value="xs">Extra Small</option>
                 <option value="s">Small</option>
                 <option value="m">Medium</option>
@@ -288,19 +288,19 @@
             <fieldset>
                 <legend>Preferred Contact Method <span class="required-star">*</span></legend>
                 <label class="checkbox-label">
-                    <input type="radio" name="contact" value="email"> Email
+                    <input type="radio" name="contact" value="email" required> Email
                 </label>
                 <label class="checkbox-label">
-                    <input type="radio" name="contact" value="phone"> Phone
+                    <input type="radio" name="contact" value="phone" required> Phone
                 </label>
                 <label class="checkbox-label">
-                    <input type="radio" name="contact" value="mail"> Mail
+                    <input type="radio" name="contact" value="mail" required> Mail
                 </label>
             </fieldset>
             
             <!-- TODO: Make checkbox required -->
             <label class="checkbox-label">
-                <input type="checkbox" name="terms" id="terms8">
+                <input type="checkbox" name="terms" id="terms8" required>
                 I agree to the terms and conditions <span class="required-star">*</span>
             </label>
             
@@ -325,7 +325,30 @@
             -->
             
             <!-- Your form fields here -->
-            
+            <label>Fullname:</label>
+            <input pattern="[A-Za-z\s]+" required>
+
+            <label>Email:</label>
+            <input type="email" required>
+
+            <label>Password:</label>
+            <input type="text" minlength="8" required>
+
+            <label>Age:</label>
+            <input type="number" min="18" max="120" required>
+
+            <label>Phone:</label>
+            <input pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+
+            <label>Country:</label>
+            <select required>
+                <option value="">Choose size</option>
+            </select>
+
+            <label>Terms:</label>
+            <input type="checkbox" required>
+                I agree to the terms and conditions
+
             <button type="submit">Register</button>
         </form>
     </section>
@@ -337,11 +360,11 @@
         <form id="form10">
             <label>Username <span class="required-star">*</span></label>
             <!-- TODO: Add appropriate validation -->
-            <input type="text" name="username" id="username10">
+            <input type="text" name="username" id="username10" minlength="4" pattern="[A-Za-z0-9_]+" required>
             
             <label>Password <span class="required-star">*</span></label>
             <!-- TODO: Add pattern for strong password -->
-            <input type="password" name="password" id="password10">
+            <input type="password" name="password" id="password10" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
             <span class="hint">Minimum 8 characters with uppercase, lowercase, and number</span>
             
             <button type="submit">Create Account</button>

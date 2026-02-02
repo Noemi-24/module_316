@@ -155,7 +155,7 @@ function verifyExercises() {
 }
 
 // Uncomment to run verification:
-// verifyExercises();
+verifyExercises();
 
 console.log('HTML Form Validation exercises loaded.');
 console.log('These exercises are primarily completed in the HTML file.');
