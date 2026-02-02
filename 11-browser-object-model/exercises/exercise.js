@@ -8,57 +8,90 @@
 // - outerWidth and outerHeight
 // - scrollX and scrollY
 // Display in #window-info
-// Your code here:
-
-
+document.getElementById('show-window-info').addEventListener('click', () => {
+    document.getElementById('window-info').innerHTML= `
+        <p>Viewport width: ${window.innerWidth}</p>
+        <p>Viewport height: ${window.innerHeight}</p>
+        <p>Brower window width: ${window.outerWidth}</p>
+        <p>browser window height: ${window.outerHeight}</p>
+        <p>Horizontal scroll: ${window.scrollX}</p>
+        <p>Vertical scroll: ${window.scrollY}</p>`
+});
 
 // ===== Part 2: Dialog Methods =====
 
 // 2. Show an alert when #show-alert is clicked
-// Your code here:
-
+document.getElementById('show-alert').addEventListener('click', ()=>{
+    window.alert('Hello');
+});
 
 // 3. Show a confirm dialog when #show-confirm is clicked
 // Display the result (true/false) in #dialog-result
-// Your code here:
-
+document.getElementById('show-confirm').addEventListener('click', ()=>{
+    const result = confirm('Are you sure you want to delete this?');
+    if(result){
+        document.getElementById('dialog-result').textContent = result;
+    }
+});
 
 // 4. Show a prompt when #show-prompt is clicked
 // Display what the user entered in #dialog-result
-// Your code here:
-
-
+document.getElementById('show-prompt').addEventListener('click', ()=>{
+    const name = prompt('What is your name?');
+    if (name) {
+        document.getElementById('dialog-result').textContent = `Hello, ${name}!`;
+    }
+});
 
 // ===== Part 3: Location Object =====
 
 // 5. Display location info when the button is clicked:
 // - href, protocol, host, pathname, search, hash
-// Your code here:
-
+document.getElementById('show-location-info').addEventListener('click', () => {
+    document.getElementById('location-info').innerHTML= `
+        <p>Full URL: ${location.href}</p>
+        <p>Protocol: ${location.protocol}</p>
+        <p>Host: ${location.host}</p>
+        <p>Pathname: ${location.pathname}</p>
+        <p>Search: ${location.search}</p>
+        <p>Hash: ${location.hash}</p>`
+});
 
 // 6. Add a hash to the URL when #add-hash is clicked
-// Your code here:
-
+document.getElementById('add-hash').addEventListener('click', ()=>{
+    location.hash = 'section';
+});
 
 // 7. Reload the page when #reload-page is clicked
 // (Comment this out during development!)
-// Your code here:
-
-
+ document.getElementById('reload-page').addEventListener('click', ()=>{
+//  location.reload();
+    alert('location.reload() would refresh the page');
+});
 
 // ===== Part 4: Navigator Object =====
 
 // 8. Display navigator info:
 // - userAgent, language, onLine, cookieEnabled, platform
-// Your code here:
-
+document.getElementById('show-navigator-info').addEventListener('click', () => {
+    document.getElementById('navigator-info').innerHTML= `
+        <p>Browser info: ${navigator.userAgent}</p>
+        <p>User's Language: ${navigator.language}</p>
+        <p>Is user online?: ${navigator.onLine}</p>
+        <p>Are cookies enabled?: ${navigator.cookieEnabled}</p>
+        <p>OS: ${navigator.platform}</p>`
+});
 
 // 9. Update the online status indicator
 // Show "Online" or "Offline" with appropriate styling
 // Also listen for online/offline events
-// Your code here:
+window.addEventListener('online', () => {
+    showNotification('You are back online!');
+});
 
-
+window.addEventListener('offline', () => {
+    showNotification('You are offline.');
+});
 
 // ===== Part 5: Timers =====
 
@@ -76,7 +109,23 @@ function formatTime(totalSeconds) {
 // - Start: Begin counting seconds (use setInterval)
 // - Stop: Pause the timer (use clearInterval)
 // - Reset: Set back to 00:00
-// Your code here:
+document.getElementById('start-timer').addEventListener('click', () =>{
+    let remaining = formatTime(seconds);
+    
+    const display = document.getElementById('timer-display');
+    display.textContent = remaining;
+    console.log(remaining);
+    const intervalId = setInterval(() => {
+        remaining--;
+        display.textContent = remaining;
+        
+        if (remaining <= 0) {
+            clearInterval(intervalId);
+            display.textContent = 'Time\'s up!';
+        }
+    }, 1000);    
+
+});
 
 
 // 11. Implement the countdown button
